@@ -2,7 +2,7 @@
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US"/>
-  <App xmlns="" ProductID="{0171896b-51df-4edb-8083-19d8c423cfd8}" Title="PrimeQueryWP8" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="PrimeQueryWP8 author" Description="Sample description" Publisher="PrimeQueryWP8" PublisherID="{cdfc9f62-9f63-4b18-b098-1669ee8ce0b9}">
+  <App xmlns="" ProductID="{99acd043-6df1-4d03-b9f7-70c999f7a312}" Title="PrimeQueryWP8" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="PrimeQueryWP8 author" Description="Sample description" Publisher="PrimeQueryWP8" PublisherID="{397051da-4ec5-48bc-9f7d-ff4c99f1bd6c}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING"/>

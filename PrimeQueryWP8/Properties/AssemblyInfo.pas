@@ -25,7 +25,7 @@ uses System.Reflection,
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("af0eb910-9807-4af9-99c7-f18c022899cc")]
+[assembly: Guid("23d7014e-25c0-435f-9ffa-8f41b4345af8")]
 
 // Version information for an assembly consists of the following four values:
 //

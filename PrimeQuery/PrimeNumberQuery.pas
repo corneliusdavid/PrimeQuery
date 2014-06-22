@@ -4,9 +4,16 @@ interface
 
 type
   PrimeNumberQuery = public class
-  { might add more stuff later }
+  protected
+    method GetAsString: String;
+    method SetAsString(NumStr: String);
   public
     class method IsPrime(const TestNumber: Integer): Boolean;
+    method Clear;
+    method Backspace;
+    method Check: Boolean;
+    property Number: Integer read write;
+    property AsString: String read GetAsString write SetAsString;
   end;
 
 implementation
@@ -29,6 +36,34 @@ begin
       end else
         i := i + 2;
   end;
+end;
+
+method PrimeNumberQuery.Clear;
+begin
+  Number := 0;
+end;
+
+method PrimeNumberQuery.Backspace;
+begin
+  if Number > 0 then
+    SetAsString(Number.ToString.Substring(0, Number.ToString.Length - 2).ToString)
+  else
+    Number := 0;
+end;
+
+method PrimeNumberQuery.Check: Boolean;
+begin
+  Result := IsPrime(Number) ;
+end;
+
+method PrimeNumberQuery.GetAsString: String;
+begin
+  Result := Number.ToString;
+end;
+
+method PrimeNumberQuery.SetAsString(NumStr: String);
+begin
+  Integer.TryParse(NumStr, out Number);
 end;
 
 end.
