@@ -19,7 +19,7 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>PrimeQueryWP8_$(Configuration)_$(Platform).xap</XapFilename>
+    <XapFilename>PrimeQueryWP8_Debug.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>PrimeQueryWP8.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
