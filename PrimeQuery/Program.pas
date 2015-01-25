@@ -17,7 +17,7 @@ var
   i: Integer;
 begin
   Console.WriteLine('Prime Numbers');
-  for i := 1 to 599 do
+  for i := 1 to 2000 do
     if PrimeNumberQuery.IsPrime(i) then begin
       if i > 2 then
         Console.Write(', ');
