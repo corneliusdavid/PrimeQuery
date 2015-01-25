@@ -13,14 +13,14 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+  <!--LayoutRoot is the root grid where all page content is placed-->
+  <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
 
-        <!-- LOCALIZATION NOTE:
+    <!-- LOCALIZATION NOTE:
             To localize the displayed strings copy their values to appropriately named
             keys in the app's neutral language resource file (AppResources.resx) then
             replace the hard-coded text value between the attributes' quotation marks
@@ -39,61 +39,61 @@
             CurrentUICulture of the app at run time.
          -->
 
-        <Grid.Resources>
-            <Style x:Key="DigitBtn" TargetType="Button">
-                <Setter Property="FontFamily" Value="Century Gothic" />
-                <Setter Property="FontSize" Value="48" />
-                <Setter Property="HorizontalAlignment" Value="Center" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Width" Value="110" />
-                <Setter Property="Height" Value="110" />
-                <Setter Property="Foreground" Value="DarkBlue" />
-                <Setter Property="Background" Value="BlanchedAlmond" />
-            </Style>
-        </Grid.Resources>
+    <Grid.Resources>
+      <Style x:Key="DigitBtn" TargetType="Button">
+        <Setter Property="FontFamily" Value="Century Gothic" />
+        <Setter Property="FontSize" Value="48" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Width" Value="110" />
+        <Setter Property="Height" Value="110" />
+        <Setter Property="Foreground" Value="DarkBlue" />
+        <Setter Property="Background" Value="BlanchedAlmond" />
+      </Style>
+    </Grid.Resources>
 
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="txtNumber" Height="auto" FontFamily="Century Gothic" Text="0 " Margin="15, 15, 15,5" FontSize="36" VerticalAlignment="Center" TextAlignment="Right" />
-            <TextBlock x:Name="lblPrime" Margin="0,-4,0,-4" HorizontalAlignment= "Center" FontFamily="Century Gothic" FontSize="24" Foreground="Turquoise" Height="30"  Text="not prime" />
-        
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="130" />
-                <RowDefinition Height="130" />
-                <RowDefinition Height="130" />
-                <RowDefinition Height="130" />
-                <RowDefinition Height="130" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="160"/>
-                <ColumnDefinition Width="160"/>
-                <ColumnDefinition Width="160"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" FontFamily="Century Gothic" FontSize="28" Background="DarkBlue" Foreground="BlanchedAlmond" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Clr" Height="110" Width="110" Click="btnClearClick" />
-            <Button Grid.Row="0" Grid.Column="1" FontFamily="Century Gothic" FontSize="28" Background="DarkBlue" Foreground="BlanchedAlmond" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Bksp" Height="110" Width="110" Click="btnBackspaceClick" />
-            <Button Grid.Row="0" Grid.Column="2" FontFamily="Century Gothic" FontSize="28" Background="DarkBlue" Foreground="BlanchedAlmond" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Info" Height="110" Width="110" Click="btnInfoClick" />
-            <Button Grid.Row="1" Grid.Column="0" Content="1" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
-            <Button Grid.Row="1" Grid.Column="1" Content="2" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
-            <Button Grid.Row="1" Grid.Column="2" Content="3" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
-            <Button Grid.Row="2" Grid.Column="0" Content="4" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
-            <Button Grid.Row="2" Grid.Column="1" Content="5" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
-            <Button Grid.Row="2" Grid.Column="2" Content="6" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
-            <Button Grid.Row="3" Grid.Column="0" Content="7" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
-            <Button Grid.Row="3" Grid.Column="1" Content="8" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
-            <Button Grid.Row="3" Grid.Column="2" Content="9" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
-            <Button Grid.Row="4" Grid.Column="0" Content="0" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
-            <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Century Gothic" FontSize="42" Content="Check!" HorizontalContentAlignment="Center" Background="DarkBlue" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="110" Width="220" Margin="11,11,11,12" Click="btnPrimeCheck"  />
-        </Grid>
+    <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+      <TextBlock x:Name="txtNumber" Height="auto" FontFamily="Century Gothic" Text="0 " Margin="15, 15, 15,5" FontSize="36" VerticalAlignment="Center" TextAlignment="Right" />
+      <TextBlock x:Name="lblPrime" Margin="0,-4,0,-4" HorizontalAlignment= "Center" FontFamily="Century Gothic" FontSize="24" Foreground="Turquoise" Height="30"  Text="not prime" />
 
-        <!--Uncomment to see an alignment grid to help ensure your controls are
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="130" />
+          <RowDefinition Height="130" />
+          <RowDefinition Height="130" />
+          <RowDefinition Height="130" />
+          <RowDefinition Height="130" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="160"/>
+          <ColumnDefinition Width="160"/>
+          <ColumnDefinition Width="160"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" FontFamily="Century Gothic" FontSize="28" Background="DarkBlue" Foreground="BlanchedAlmond" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Clr" Height="110" Width="140" Click="btnClearClick" Margin="10" />
+        <Button Grid.Row="0" Grid.Column="1" FontFamily="Century Gothic" FontSize="28" Background="DarkBlue" Foreground="BlanchedAlmond" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Bksp" Height="110" Width="140" Click="btnBackspaceClick" Margin="10" />
+        <Button Grid.Row="0" Grid.Column="2" FontFamily="Century Gothic" FontSize="28" Background="DarkBlue" Foreground="BlanchedAlmond" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Info" Height="110" Width="138" Click="btnInfoClick" Margin="10,10,12,10" />
+        <Button Grid.Row="1" Grid.Column="0" Content="1" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
+        <Button Grid.Row="1" Grid.Column="1" Content="2" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
+        <Button Grid.Row="1" Grid.Column="2" Content="3" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
+        <Button Grid.Row="2" Grid.Column="0" Content="4" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
+        <Button Grid.Row="2" Grid.Column="1" Content="5" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
+        <Button Grid.Row="2" Grid.Column="2" Content="6" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
+        <Button Grid.Row="3" Grid.Column="0" Content="7" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
+        <Button Grid.Row="3" Grid.Column="1" Content="8" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
+        <Button Grid.Row="3" Grid.Column="2" Content="9" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
+        <Button Grid.Row="4" Grid.Column="0" Content="0" Style="{StaticResource ResourceKey=DigitBtn}" Click="DigitClick" />
+        <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="Century Gothic" FontSize="42" Content="Check!" HorizontalContentAlignment="Center" Background="DarkBlue" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="110" Width="285" Margin="10,10,25,10" Click="btnPrimeCheck"  />
+      </Grid>
+
+      <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to
             account for the System Tray. Set this to 0 (or remove the margin altogether)
             if the System Tray is hidden.
 
             Before shipping remove this XAML and the image itself.-->
-        <Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />
-        </StackPanel>
-    </Grid>
+      <Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />
+    </StackPanel>
+  </Grid>
 
 </phone:PhoneApplicationPage>
