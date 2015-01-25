@@ -107,7 +107,6 @@
     <Compile Include="MainPage.xaml.pas">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PrimeNumberQuery.pas" />
     <Compile Include="Properties\AssemblyInfo.pas" />
     <Compile Include="Resources\AppResources.Designer.pas">
       <DependentUpon>Resources\AppResources.resx</DependentUpon>
@@ -185,4 +184,5 @@
   <PropertyGroup>
     <PreBuildEvent />
   </PropertyGroup>
+  <Import Project="C:\Users\David\Documents\dev\PrimeQuery\PrimeShared\PrimeShared.projitems" Label="Shared" />
 </Project>

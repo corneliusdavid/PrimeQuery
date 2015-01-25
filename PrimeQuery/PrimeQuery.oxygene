@@ -53,6 +53,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
+    <Reference Include="Sugar">
+      <HintPath>C:\Program Files (x86)\RemObjects Software\Oxygene\Sugar\Echoes\Sugar.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -67,7 +70,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PrimeNumberQuery.pas" />
     <Compile Include="Program.pas" />
     <Compile Include="Properties\AssemblyInfo.pas" />
     <Content Include="Properties\App.ico" />
@@ -87,4 +89,5 @@
   <PropertyGroup>
     <PreBuildEvent />
   </PropertyGroup>
+  <Import Project="..\PrimeShared\PrimeShared.projitems" Label="Shared" />
 </Project>

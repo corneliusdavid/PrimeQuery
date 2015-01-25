@@ -55,6 +55,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ReachFramework" />
+    <Reference Include="Sugar">
+      <HintPath>C:\Program Files (x86)\RemObjects Software\Oxygene\Sugar\Echoes\Sugar.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -82,7 +85,6 @@
     <Compile Include="MainPage.xaml.pas">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PrimeNumberQuery.pas" />
     <Compile Include="Properties\AssemblyInfo.pas" />
     <Compile Include="Properties\Resources.Designer.pas" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -105,4 +107,5 @@
   <PropertyGroup>
     <PreBuildEvent />
   </PropertyGroup>
+  <Import Project="..\..\PrimeShared\PrimeShared.projitems" Label="Shared" />
 </Project>

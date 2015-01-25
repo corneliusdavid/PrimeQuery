@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "PrimeQueryWPF", "PrimeQueryWPF\PrimeQueryWPF\PrimeQueryWPF.oxygene", "{1B757A46-DA4E-42C9-AD53-EA507F68A695}"
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "PrimeQuery", "PrimeQuery\PrimeQuery.oxygene", "{313A745E-B09B-4460-A1C1-45A5DEDFF4AB}"
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "PrimeQueryWP8", "V:\PrimeQuery\PrimeQueryWP8\PrimeQueryWP8.oxygene", "{AFA1FC1C-89A2-4B6C-A647-6668680322BE}"
+EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "PrimeShared", "PrimeShared\PrimeShared.elements", "{21BA4269-84F4-45EA-872F-24BF16817BD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
