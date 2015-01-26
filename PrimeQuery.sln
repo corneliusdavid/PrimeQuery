@@ -5,11 +5,15 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "PrimeQueryWPF", "PrimeQueryWPF\PrimeQueryWPF\PrimeQueryWPF.oxygene", "{1B757A46-DA4E-42C9-AD53-EA507F68A695}"
 EndProject
-Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "PrimeQuery", "PrimeQuery\PrimeQuery.oxygene", "{313A745E-B09B-4460-A1C1-45A5DEDFF4AB}"
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "PrimeQueryConsole", "PrimeQuery\PrimeQueryConsole.oxygene", "{313A745E-B09B-4460-A1C1-45A5DEDFF4AB}"
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "PrimeQueryWP8", "V:\PrimeQuery\PrimeQueryWP8\PrimeQueryWP8.oxygene", "{AFA1FC1C-89A2-4B6C-A647-6668680322BE}"
 EndProject
 Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "PrimeShared", "PrimeShared\PrimeShared.elements", "{21BA4269-84F4-45EA-872F-24BF16817BD3}"
+EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "PrimeQueryWinForms", "PrimeQueryWinForms\PrimeQueryWinForms.oxygene", "{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}"
+EndProject
+Project("{656346D9-4656-40DA-A068-22D5425D4639}") = "PrimeQueryTest", "PrimeQueryTest\PrimeQueryTest.oxygene", "{7B82DB90-04F6-421D-9F79-BB6127A2AC43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +83,38 @@ Global
 		{AFA1FC1C-89A2-4B6C-A647-6668680322BE}.Release|x86.ActiveCfg = Release|x86
 		{AFA1FC1C-89A2-4B6C-A647-6668680322BE}.Release|x86.Build.0 = Release|x86
 		{AFA1FC1C-89A2-4B6C-A647-6668680322BE}.Release|x86.Deploy.0 = Release|x86
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Debug|AnyCPU.ActiveCfg = Debug
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Debug|AnyCPU.Build.0 = Debug
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Debug|ARM.ActiveCfg = Debug
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Debug|ARM.Build.0 = Debug
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Debug|Mixed Platforms.Build.0 = Debug
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Debug|x86.ActiveCfg = Debug
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Debug|x86.Build.0 = Debug
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Release|AnyCPU.ActiveCfg = Release
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Release|AnyCPU.Build.0 = Release
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Release|ARM.ActiveCfg = Release
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Release|ARM.Build.0 = Release
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Release|Mixed Platforms.ActiveCfg = Release
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Release|Mixed Platforms.Build.0 = Release
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Release|x86.ActiveCfg = Release
+		{0CC29F3F-CCFC-4B20-88DF-E47F8D788E6C}.Release|x86.Build.0 = Release
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Debug|AnyCPU.ActiveCfg = Debug
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Debug|AnyCPU.Build.0 = Debug
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Debug|ARM.ActiveCfg = Debug
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Debug|ARM.Build.0 = Debug
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Debug|Mixed Platforms.Build.0 = Debug
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Debug|x86.ActiveCfg = Debug
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Debug|x86.Build.0 = Debug
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Release|AnyCPU.ActiveCfg = Release
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Release|AnyCPU.Build.0 = Release
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Release|ARM.ActiveCfg = Release
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Release|ARM.Build.0 = Release
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Release|Mixed Platforms.ActiveCfg = Release
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Release|Mixed Platforms.Build.0 = Release
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Release|x86.ActiveCfg = Release
+		{7B82DB90-04F6-421D-9F79-BB6127A2AC43}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
