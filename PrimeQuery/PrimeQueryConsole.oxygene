@@ -14,7 +14,7 @@
     <ApplicationIcon>Properties\App.ico</ApplicationIcon>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <Name>PrimeQuery</Name>
+    <Name>PrimeQueryConsole</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <Optimize>false</Optimize>
