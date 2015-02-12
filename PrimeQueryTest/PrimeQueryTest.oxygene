@@ -65,6 +65,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PrimeEditTestClass.pas">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PrimeQueryTestClass.pas">
       <SubType>Code</SubType>
     </Compile>
