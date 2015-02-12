@@ -12,14 +12,18 @@ type
     FPrimeNumQry: PrimeNumberQuery;
   public
     method Setup; override;
+    method Test0;
+    method Test1;
     method Test2;
     method Test3;
     method Test4;
+    method Test5;
+    method Test6;
+    method Test7;
+    method Test8;
     method Test13;
     method Test17;
     method TestSet10;
-    method TestClear;
-    method TestBackspace;
     method TestCheck;
   end;
 
@@ -63,24 +67,40 @@ begin
   Assert.AreEqual(FPrimeNumQry.Number, TestNum);
 end;
 
-method PrimeQueryTestClass.TestClear;
-begin
-  FPrimeNumQry.Number := 37;
-  FPrimeNumQry.Clear;
-  Assert.AreEqual(FPrimeNumQry.Number, 0);
-end;
-
-method PrimeQueryTestClass.TestBackspace;
-begin
-  FPrimeNumQry.Number := 123;
-  FPrimeNumQry.Backspace;
-  Assert.AreEqual(FPrimeNumQry.Number, 12);
-end;
-
 method PrimeQueryTestClass.TestCheck;
 begin
   Assert.IsFalse(FPrimeNumQry.IsPrime(8));
   Assert.IsTrue(FPrimeNumQry.IsPrime(17));
+end;
+
+method PrimeQueryTestClass.Test0;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(0));
+end;
+
+method PrimeQueryTestClass.Test1;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(1));
+end;
+
+method PrimeQueryTestClass.Test5;
+begin
+  Assert.IsTrue(FPrimeNumQry.IsPrime(5));
+end;
+
+method PrimeQueryTestClass.Test6;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(6));
+end;
+
+method PrimeQueryTestClass.Test7;
+begin
+  Assert.IsTrue(FPrimeNumQry.IsPrime(7));
+end;
+
+method PrimeQueryTestClass.Test8;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(8));
 end;
 
 end.
