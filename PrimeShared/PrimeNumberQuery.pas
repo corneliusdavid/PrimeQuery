@@ -9,14 +9,23 @@ type
     method SetAsString(NumStr: String);
   public
     class method IsPrime(const TestNumber: Integer): Boolean;
-    method Clear;
-    method Backspace;
     method Check: Boolean;
     property Number: Integer read write;
     property AsString: String read GetAsString write SetAsString;
   end;
 
+  PrimeNumberEdit = public class(PrimeNumberQuery)
+  public
+    method Clear;
+    method AddDigit(const NewDigit: Integer);
+    method Backspace;
+    method IncNumber;
+    method DecNumber;
+  end;
+
 implementation
+
+{ PrimeNumberQuery }
 
 class method PrimeNumberQuery.IsPrime(const TestNumber: Integer): Boolean;
 var 
@@ -38,22 +47,9 @@ begin
   end;
 end;
 
-method PrimeNumberQuery.Clear;
-begin
-  Number := 0;
-end;
-
-method PrimeNumberQuery.Backspace;
-begin
-  if Number > 0 then
-    SetAsString(Number.ToString.Substring(0, Number.ToString.Length - 2).ToString)
-  else
-    Number := 0;
-end;
-
 method PrimeNumberQuery.Check: Boolean;
 begin
-  Result := IsPrime(Number) ;
+  Result := IsPrime(Number);
 end;
 
 method PrimeNumberQuery.GetAsString: String;
@@ -64,6 +60,40 @@ end;
 method PrimeNumberQuery.SetAsString(NumStr: String);
 begin
   Integer.TryParse(NumStr, out Number);
+end;
+
+{ PrimeNumberEdit }
+
+method PrimeNumberEdit.Clear;
+begin
+  Number := 0;
+end;
+
+method PrimeNumberEdit.Backspace;
+begin
+  if Number.ToString.Length > 1 then
+    SetAsString(Number.ToString.Substring(0, Number.ToString.Length - 1).ToString)
+  else
+    Number := 0;
+end;
+
+method PrimeNumberEdit.AddDigit(NewDigit: Integer);
+begin
+  if Number > 0 then
+    SetAsString(Number.ToString + NewDigit.ToString)
+  else
+    Number := NewDigit;
+end;
+
+method PrimeNumberEdit.IncNumber;
+begin
+  Number := Number + 1;
+end;
+
+method PrimeNumberEdit.DecNumber;
+begin
+  if Number > 0 then
+    Number := Number - 1;
 end;
 
 end.
