@@ -23,6 +23,10 @@ type
     method Test8;
     method Test13;
     method Test17;
+    method Test999999999999997;
+    method Test999999999999998;
+    method Test999999999999999;
+    method Test1000000000000000;
     method TestSet10;
     method TestCheck;
   end;
@@ -101,6 +105,26 @@ end;
 method PrimeQueryTestClass.Test8;
 begin
   Assert.IsFalse(FPrimeNumQry.IsPrime(8));
+end;
+
+method PrimeQueryTestClass.Test999999999999997;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(999999999999997));
+end;
+
+method PrimeQueryTestClass.Test999999999999998;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(999999999999998));
+end;
+
+method PrimeQueryTestClass.Test999999999999999;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(999999999999999));
+end;
+
+method PrimeQueryTestClass.Test1000000000000000;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(1000000000000000));
 end;
 
 end.
