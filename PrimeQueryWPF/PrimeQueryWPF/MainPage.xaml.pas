@@ -11,12 +11,15 @@ uses
   System.Windows.Documents,
   System.Windows.Media,
   System.Windows.Navigation,
-  System.Windows.Shapes;
+  System.Windows.Shapes,
+  PrimeQuery;
 
 type
   MainPage = public partial class(System.Windows.Window)
   private
+    APrimeQry: PrimeNumberEdit;
     ClearDisplay: Boolean;
+    method UpdateDisplay;
     method DigitClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
     method btnPrimeCheck(sender: System.Object; e: System.Windows.RoutedEventArgs);
     method btnClearClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
@@ -31,22 +34,25 @@ type
   
 implementation
 
-uses
-  PrimeQuery;
 
 constructor MainPage;
 begin
   InitializeComponent();
   ClearDisplay := False;
+
+  APrimeQry := new PrimeNumberEdit;
+  UpdateDisplay;
 end;
 
 method MainPage.ProcessDigitClick(const DigitClicked: String);
-begin
+begin 
   if (txtNumber.Text.Trim = "0") or ClearDisplay then begin
-    txtNumber.Text := DigitClicked;
+    APrimeQry.AsString := DigitClicked;
     ClearDisplay := False;
   end else
-    txtNumber.Text := txtNumber.Text.Trim + DigitClicked;
+    APrimeQry.AddDigit(DigitClicked);
+
+  UpdateDisplay;
 end;
 
 method MainPage.DigitClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
@@ -55,34 +61,28 @@ begin
 end;
 
 method MainPage.btnPrimeCheck(sender: System.Object; e: System.Windows.RoutedEventArgs);
-var
-  n: Integer;
 begin
-  if Integer.TryParse(txtNumber.Text, out n) then begin
-    if PrimeNumberQuery.IsPrime(n) then begin
-      lblPrime.Foreground := Brushes.Yellow;
-      lblPrime.Content := txtNumber.Text.Trim + ' is a Prime Number!';
-    end else begin
-      lblPrime.Foreground := Brushes.Turquoise;
-      lblPrime.Content := txtNumber.Text.Trim + ' is not prime';
-    end;
+  if APrimeQry.Check then begin
+    lblPrime.Foreground := Brushes.Yellow;
+    lblPrime.Content := txtNumber.Text.Trim + ' is a Prime Number!';
+  end else begin
+    lblPrime.Foreground := Brushes.Turquoise;
+    lblPrime.Content := txtNumber.Text.Trim + ' is not prime';
+  end;
 
-    ClearDisplay := True;
-  end else
-    MessageBox.Show('Not a valid number.');
+  ClearDisplay := True;
 end;
 
 method MainPage.btnClearClick(sender: Object; e: RoutedEventArgs);
 begin
-  Clear;  
+  APrimeQry.Clear;
+  UpdateDisplay;
 end;
 
 method MainPage.btnBackspaceClick(sender: Object; e: RoutedEventArgs);
 begin
-  if txtNumber.Text.Trim.Length > 1 then
-    txtNumber.Text := txtNumber.Text.Substring(0, txtNumber.Text.Length - 1) + ' '
-  else
-    Clear;
+  APrimeQry.Backspace;
+  UpdateDisplay;
 end;
 
 method MainPage.btnInfoClick(sender: Object; e: RoutedEventArgs);
@@ -92,7 +92,13 @@ end;
 
 method MainPage.Clear;
 begin
-  txtNumber.Text := '0 ';
+  APrimeQry.Clear;
+  UpdateDisplay;
+end;
+
+method MainPage.UpdateDisplay;
+begin
+  txtNumber.Text := APrimeQry.AsString + ' ';
 end;
 
 end.
