@@ -83,12 +83,20 @@ begin
   FPrimeNumEdit.Number := 12;
   FPrimeNumEdit.AddDigit(3);
   Assert.IsTrue(FPrimeNumEdit.Number = 123);
+
+  FPrimeNumEdit.Number := 12;
+  FPrimeNumEdit.AddDigit('3');
+  Assert.IsTrue(FPrimeNumEdit.Number = 123);
 end;
 
 method PrimeEditTestClass.TestAddDigitToZero;
 begin
   FPrimeNumEdit.Number := 0;
   FPrimeNumEdit.AddDigit(4);
+  Assert.IsTrue(FPrimeNumEdit.Number = 4);
+
+  FPrimeNumEdit.Number := 0;
+  FPrimeNumEdit.AddDigit('4');
   Assert.IsTrue(FPrimeNumEdit.Number = 4);
 end;
 
@@ -97,6 +105,10 @@ begin
   FPrimeNumEdit.Number := 1;
   FPrimeNumEdit.AddDigit(8);
   Assert.IsTrue(FPrimeNumEdit.Number = 18);
+
+  FPrimeNumEdit.Number := 1;
+  FPrimeNumEdit.AddDigit('8');
+  Assert.IsTrue(FPrimeNumEdit.Number = 18);
 end;
 
 method PrimeEditTestClass.TestAddDigitToNine;
@@ -104,12 +116,20 @@ begin
   FPrimeNumEdit.Number := 9;
   FPrimeNumEdit.AddDigit(1);
   Assert.IsTrue(FPrimeNumEdit.Number = 91);
+
+  FPrimeNumEdit.Number := 9;
+  FPrimeNumEdit.AddDigit('1');
+  Assert.IsTrue(FPrimeNumEdit.Number = 91);
 end;
 
 method PrimeEditTestClass.TestAddDigitTo999;
 begin
   FPrimeNumEdit.Number := 999;
   FPrimeNumEdit.AddDigit(2);
+  Assert.IsTrue(FPrimeNumEdit.Number = 9992);
+
+  FPrimeNumEdit.Number := 999;
+  FPrimeNumEdit.AddDigit('2');
   Assert.IsTrue(FPrimeNumEdit.Number = 9992);
 end;
 
