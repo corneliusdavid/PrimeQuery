@@ -20,6 +20,7 @@ type
   public
     method Clear;
     method AddDigit(const NewDigit: UInt64);
+    method AddDigit(const NewDigit: String);
     method Backspace;
     method IncNumber;
     method DecNumber;
@@ -86,6 +87,14 @@ begin
     SetAsString(Number.ToString + NewDigit.ToString)
   else
     Number := NewDigit;
+end;
+
+method PrimeNumberEdit.AddDigit(NewDigit: String);
+begin
+  if Number > 0 then
+    SetAsString(Number.ToString + NewDigit)
+  else
+    SetAsString(NewDigit);
 end;
 
 method PrimeNumberEdit.IncNumber;
