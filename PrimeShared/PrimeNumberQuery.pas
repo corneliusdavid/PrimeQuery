@@ -12,6 +12,7 @@ type
     method Check: Boolean;
     property Number: UInt64 read write;
     property AsString: String read GetAsString write SetAsString;
+    event NumberChanged: EventHandler;
   public invariants
     Number < 4000000000000;
   end;
@@ -62,8 +63,17 @@ begin
 end;
 
 method PrimeNumberQuery.SetAsString(NumStr: String);
+var
+  NewNum: UInt64;
 begin
-  UInt64.TryParse(NumStr, out Number);
+  UInt64.TryParse(NumStr, out NewNum);
+
+  if NewNum <> Number then begin
+    Number := NewNum;
+    
+    if assigned(NumberChanged) then
+      NumberChanged(self, EventArgs.Empty);
+  end;
 end;
 
 { PrimeNumberEdit }

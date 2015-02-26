@@ -20,18 +20,16 @@ type
   MainPage = public partial class(PhoneApplicationPage)
   private
     fClearDisplay: Boolean;
-    fPrimeQry: PrimeNumberQuery;
+    fPrimeQry: PrimeNumberEdit;
     method DigitClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
     method btnClearClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
     method btnBackspaceClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
     method btnInfoClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
     method btnPrimeCheck(sender: System.Object; e: System.Windows.RoutedEventArgs);
-    method ProcessDigitClick(const DigitClicked: String);
-    method ProcessPrimeCheck;
+  protected
+    method UpdateWhenChanged(sender: System.Object; aEventArgs: EventArgs);
   public
-    // Constructor
     constructor ;
-
   end;
 
 implementation
@@ -41,59 +39,48 @@ begin
   InitializeComponent();
 
   fClearDisplay := False;
-  fPrimeQry := new PrimeNumberQuery;
+  fPrimeQry := new PrimeNumberEdit;
+  fPrimeQry.NumberChanged += @UpdateWhenChanged;
 end;
 
 method MainPage.DigitClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
 begin
-  ProcessDigitClick(String((sender as Button).Content));
+  if fClearDisplay then begin
+    fClearDisplay := false;
+    fPrimeQry.Clear;
+  end;
+
+  fPrimeQry.AddDigit(String((sender as Button).Content));
 end;
 
 method MainPage.btnClearClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
 begin
   fPrimeQry.Clear;
-  txtNumber.Text := fPrimeQry.AsString;
 end;
 
 method MainPage.btnBackspaceClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
 begin
-  if txtNumber.Text.Trim.Length > 1 then
-    txtNumber.Text := txtNumber.Text.Substring(0, txtNumber.Text.Length - 1) + ' '
-  else
-    txtNumber.Text := '0'; 
-
-  fPrimeQry.AsString := txtNumber.Text;
-end;
-
-method MainPage.btnInfoClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
-begin
-  MessageBox.Show('Checks a number for primality.  By Cornelius Concepts, 2014');
+  fPrimeQry.Backspace;
 end;
 
 method MainPage.btnPrimeCheck(sender: System.Object; e: System.Windows.RoutedEventArgs);
 begin
-  ProcessPrimeCheck;
-end;
-
-method MainPage.ProcessDigitClick(DigitClicked: String);
-begin
-  if (txtNumber.Text.Trim = "0") or fClearDisplay then begin
-    txtNumber.Text := DigitClicked;
-    fClearDisplay := False;
-  end else
-    txtNumber.Text := txtNumber.Text.Trim + DigitClicked;
-
-  fPrimeQry.AsString := txtNumber.Text;
-end;
-
-method MainPage.ProcessPrimeCheck;
-begin
-  if fPrimeQry.Check then 
-    lblPrime.Text := txtNumber.Text.Trim + ' is a Prime Number!'
+  if fPrimeQry.Check then
+    lblPrime.Text := fPrimeQry.AsString + ' is a Prime Number!'
   else
-    lblPrime.Text := txtNumber.Text.Trim + ' is not prime';
+    lblPrime.Text := fPrimeQry.AsString + ' is not prime';
 
-  fClearDisplay := True;
+  fClearDisplay := true;
+end;
+
+method MainPage.btnInfoClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
+begin
+  MessageBox.Show('Checks a number for primality.  By Cornelius Concepts, 2015');
+end;
+
+method MainPage.UpdateWhenChanged(sender: System.Object; aEventArgs: EventArgs);
+begin
+  txtNumber.Text := fPrimeQry.AsString;
 end;
 
 end.

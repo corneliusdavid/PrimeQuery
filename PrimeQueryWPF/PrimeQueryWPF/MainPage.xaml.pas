@@ -19,15 +19,13 @@ type
   private
     APrimeQry: PrimeNumberEdit;
     ClearDisplay: Boolean;
-    method UpdateDisplay;
     method DigitClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
     method btnPrimeCheck(sender: System.Object; e: System.Windows.RoutedEventArgs);
     method btnClearClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
     method btnBackspaceClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
     method btnInfoClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
   protected
-    method Clear;
-    method ProcessDigitClick(const DigitClicked: String);
+    method UpdateWhenChanged(sender: System.Object; aEventArgs: EventArgs);
   public
     constructor;
   end;
@@ -41,23 +39,17 @@ begin
   ClearDisplay := False;
 
   APrimeQry := new PrimeNumberEdit;
-  UpdateDisplay;
-end;
-
-method MainPage.ProcessDigitClick(const DigitClicked: String);
-begin 
-  if (txtNumber.Text.Trim = "0") or ClearDisplay then begin
-    APrimeQry.AsString := DigitClicked;
-    ClearDisplay := False;
-  end else
-    APrimeQry.AddDigit(DigitClicked);
-
-  UpdateDisplay;
+  APrimeQry.NumberChanged += @UpdateWhenChanged;
 end;
 
 method MainPage.DigitClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
 begin
-  ProcessDigitClick(String((sender as Button).Content));
+  if ClearDisplay then begin
+    APrimeQry.Clear;
+    ClearDisplay := false;
+  end;
+
+  APrimeQry.AddDigit(String((sender as Button).Content));
 end;
 
 method MainPage.btnPrimeCheck(sender: System.Object; e: System.Windows.RoutedEventArgs);
@@ -76,27 +68,19 @@ end;
 method MainPage.btnClearClick(sender: Object; e: RoutedEventArgs);
 begin
   APrimeQry.Clear;
-  UpdateDisplay;
 end;
 
 method MainPage.btnBackspaceClick(sender: Object; e: RoutedEventArgs);
 begin
   APrimeQry.Backspace;
-  UpdateDisplay;
 end;
 
 method MainPage.btnInfoClick(sender: Object; e: RoutedEventArgs);
 begin
-  MessageBox.Show('Checks a number for primality.  By Cornelius Concepts, 2014');
+  MessageBox.Show('Checks a number for primality.  By Cornelius Concepts, 2015');
 end;
 
-method MainPage.Clear;
-begin
-  APrimeQry.Clear;
-  UpdateDisplay;
-end;
-
-method MainPage.UpdateDisplay;
+method MainPage.UpdateWhenChanged(sender: System.Object; aEventArgs: EventArgs);
 begin
   txtNumber.Text := APrimeQry.AsString + ' ';
 end;
