@@ -8,13 +8,14 @@ type
     method GetAsString: String;
     method SetAsString(NumStr: String);
   public
+    const HighestSupportedNumber = 4000000000000; // 4 trillion
     class method IsPrime(const TestNumber: UInt64): Boolean;
-    method Check: Boolean;
+    method IsPrime: Boolean;
     property Number: UInt64 read write;
     property AsString: String read GetAsString write SetAsString;
     event NumberChanged: EventHandler;
   public invariants
-    Number < 4000000000000;
+    Number <= HighestSupportedNumber;
   end;
 
   PrimeNumberEdit = public class(PrimeNumberQuery)
@@ -27,9 +28,28 @@ type
     method DecNumber;
   end;
 
+  PrimeNumberList = public class(PrimeNumberQuery)
+  private
+    PrimeCount: UInt32;
+    method DoOnFoundPrimeEvent;
+  public
+    property MinNumber: UInt64;
+    property MaxNumber: UInt64;
+    property StartTime: DateTime;
+    property StopTime: DateTime;
+    property Count: UInt32 read PrimeCount;
+    constructor;
+    method Generate;
+    method ElapsedTime: TimeSpan;    
+    event OnFoundPrime: EventHandler;
+  public invariants
+    MaxNumber <= HighestSupportedNumber;
+    MinNumber < MaxNumber;
+  end;
+
 implementation
 
-{ PrimeNumberQuery }
+{$REGION PrimeNumberQuery}
 
 class method PrimeNumberQuery.IsPrime(const TestNumber: UInt64): Boolean;
 var 
@@ -52,7 +72,7 @@ begin
   end;
 end;
 
-method PrimeNumberQuery.Check: Boolean;
+method PrimeNumberQuery.IsPrime: Boolean;
 begin
   Result := IsPrime(Number);
 end;
@@ -75,8 +95,9 @@ begin
       NumberChanged(self, EventArgs.Empty);
   end;
 end;
+{$ENDREGION}
 
-{ PrimeNumberEdit }
+{$REGION PrimeNumberEdit }
 
 method PrimeNumberEdit.Clear;
 begin
@@ -117,5 +138,48 @@ begin
   if Number > 0 then
     Number := Number - 1;
 end;
+{$ENDREGION}
+
+{$REGION PrimeNumberList}
+constructor PrimeNumberList;
+begin
+  MinNumber := 1;
+  MaxNumber := HighestSupportedNumber;
+  Number := MinNumber;
+  PrimeCount := 0;
+  StartTime := DateTime.MinValue;
+  StopTime := DateTime.MinValue;
+end;
+
+method PrimeNumberList.Generate;
+begin
+  Number := MinNumber;
+  StartTime := DateTime.Now;
+  PrimeCount := 0;
+
+  repeat
+    if IsPrime then 
+      DoOnFoundPrimeEvent;
+
+    Number := Number + 1;
+  until Number > MaxNumber;
+
+  StopTime := DateTime.Now;
+end;
+
+method PrimeNumberList.DoOnFoundPrimeEvent;
+begin
+  inc(PrimeCount);
+
+  if assigned(OnFoundPrime) then
+    OnFoundPrime(self, EventArgs.Empty);
+end;
+
+method PrimeNumberList.ElapsedTime: TimeSpan;
+begin
+  result := StopTime.Subtract(StartTime);
+end;
+
+{$ENDREGION}
 
 end.

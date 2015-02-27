@@ -73,6 +73,9 @@
     </Compile>
     <Compile Include="Program.pas" />
     <Compile Include="Properties\AssemblyInfo.pas" />
+    <Compile Include="PrimeListTestClass.pas">
+      <SubType>Code</SubType>
+    </Compile>
     <Content Include="Properties\App.ico" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

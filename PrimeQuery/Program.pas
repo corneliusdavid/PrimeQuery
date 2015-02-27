@@ -6,11 +6,14 @@ interface
 type
   MenuAction = enum (maInvalid, maTestPrime, maListPrimes, maExit);
 
-  ConsoleApp = class
+  ConsoleApp = class 
+  private
+    class method OnPrimeFound(sender: System.Object; aEventArgs: EventArgs);
   public
-    const MaxLastPrime = 1000000000000000;
+    const MaxLastPrime = PrimeNumberQuery.HighestSupportedNumber;
     class method ConsoleMenu: MenuAction;
-    class method ListPrimes(LastPrime: UInt64);
+    class method ListPrimes;
+    class method ListPrimes(LastNumber: UInt64);
     class method TestPrime;
     class method MainLoop;
     class method Main(args: array of String);
@@ -41,15 +44,40 @@ begin
   end;
 end;
 
-class method ConsoleApp.ListPrimes(LastPrime: UInt64);
+class method ConsoleApp.ListPrimes;
+var  
+  StartNum, EndNum: UInt64;
+  PrimeNumLst: PrimeNumberList;
 begin
-  for i: UInt64 := 1 to LastPrime do
-    if PrimeNumberQuery.IsPrime(i) then begin
-      if i > 2 then
-        Console.Write(', ');
-      Console.Write(i.ToString);
-    end;
+  PrimeNumLst := new PrimeNumberList;
+
+  Console.Write('Enter starting number: ');
+  UInt64.TryParse(Console.ReadLine, out StartNum);
+  Console.Write('Enter ending number: ');
+  UInt64.TryParse(Console.ReadLine, out EndNum);
+
+  PrimeNumLst.MinNumber := StartNum;
+  PrimeNumLst.MaxNumber := EndNum;
+  PrimeNumLst.OnFoundPrime += @OnPrimeFound;
+  PrimeNumLst.Generate;
+
   Console.WriteLine;
+  Console.WriteLine('{0} total primes in {1} seconds.', 
+              [PrimeNumLst.Count, PrimeNumLst.ElapsedTime.TotalSeconds]);
+end;
+
+class method ConsoleApp.ListPrimes(LastNumber: UInt64);
+var  
+  PrimeNumLst: PrimeNumberList;
+begin
+  PrimeNumLst := new PrimeNumberList;
+  PrimeNumLst.MinNumber := 1;
+  PrimeNumLst.MaxNumber := LastNumber;
+  PrimeNumLst.OnFoundPrime += @OnPrimeFound;
+  PrimeNumLst.Generate;
+
+  Console.WriteLine('{0} total primes in {1} seconds.', 
+              [PrimeNumLst.Count, PrimeNumLst.ElapsedTime.TotalSeconds]);
 end;
 
 class method ConsoleApp.TestPrime;
@@ -71,7 +99,7 @@ const
                 '  or to list all primes up to a certain number.' + CRLF +
                 'If started with /? then this help message is listed.' + CRLF +
                 'If started with /list 123 then all primes up to 123 are listed' + CRLF +
-                '  (replace 123 with any positive number up to 4 quadrillion).';
+                '  (replace 123 with any positive number up to 4 trillion).';
 var 
   LastPrime: UInt64;
 begin
@@ -100,11 +128,18 @@ begin
       MenuAction.maTestPrime:
         TestPrime;
       MenuAction.maListPrimes:
-        ListPrimes(MaxLastPrime);
+        ListPrimes;
       MenuAction.maInvalid:
         Console.WriteLine('Invalid command');
     end;
   until done;
+end;
+
+class method ConsoleApp.OnPrimeFound(sender: Object; aEventArgs: EventArgs);
+begin
+  if (sender as PrimeNumberList).Count > 1 then
+    Console.Write(', ');
+  Console.Write((sender as PrimeNumberList).Number);
 end;
 
 end.

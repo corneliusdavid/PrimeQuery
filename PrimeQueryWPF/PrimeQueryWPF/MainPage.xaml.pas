@@ -54,7 +54,7 @@ end;
 
 method MainPage.btnPrimeCheck(sender: System.Object; e: System.Windows.RoutedEventArgs);
 begin
-  if APrimeQry.Check then begin
+  if APrimeQry.IsPrime then begin
     lblPrime.Foreground := Brushes.Yellow;
     lblPrime.Content := txtNumber.Text.Trim + ' is a Prime Number!';
   end else begin

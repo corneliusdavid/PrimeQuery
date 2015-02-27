@@ -65,7 +65,7 @@ end;
 
 method MainPage.btnPrimeCheck(sender: System.Object; e: System.Windows.RoutedEventArgs);
 begin
-  if fPrimeQry.Check then
+  if fPrimeQry.IsPrime then
     lblPrime.Text := fPrimeQry.AsString + ' is a Prime Number!'
   else
     lblPrime.Text := fPrimeQry.AsString + ' is not prime';
