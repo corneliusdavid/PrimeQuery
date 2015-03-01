@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="PrimeListPage" Height="500" Width="331"
-    ShowInTaskbar="False" ResizeMode="CanResizeWithGrip"
+    ShowInTaskbar="False" ResizeMode="NoResize"
     >
   <Window.Background>
     <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
@@ -12,18 +12,22 @@
     </LinearGradientBrush>
   </Window.Background>
   <StackPanel HorizontalAlignment="Stretch" Margin="0,0,-0.2,-5.4">
-    <Grid VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="5,0,0,0">
+    <Grid x:Name="grdPrimeList" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,0">
       <Grid.RowDefinitions>
+        <RowDefinition Height="40" />
+        <RowDefinition Height="40" />
+        <RowDefinition Height="40" />
         <RowDefinition Height="*" />
-        <RowDefinition Height="*" />
+        <RowDefinition Height="25" />
+        <RowDefinition Height="25" />
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="117.075"/>
-        <ColumnDefinition Width="12.525"/>
+        <ColumnDefinition Width="125"/>
         <ColumnDefinition Width="*"/>
+        
       </Grid.ColumnDefinitions>
-      <Label Grid.Column="0" Grid.Row="0" Margin="0,5,0.6,5.6" FontSize="16" FontWeight="Bold"  HorizontalAlignment= "Right" VerticalAlignment='Center' FontFamily="Century Gothic" Foreground="Black" Content="Starting Prime:" Grid.ColumnSpan="2" />
-      <TextBox Grid.Column="2" Grid.Row="0" x:Name="txtStartNum" Height="auto" FontFamily="Century Gothic" Text="0 " Margin="10.4,5,14,4.6" FontSize="24" VerticalAlignment="Center" TextAlignment="Right" GotFocus="txtStartNum_GotFocus"  >
+      <Label Grid.Column="0" Grid.Row="0" Margin="0,5,0.6,5.6" FontSize="16" FontWeight="Bold"  HorizontalAlignment= "Right" VerticalAlignment='Center' FontFamily="Century Gothic" Foreground="Black" Content="Starting Prime:"  />
+      <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtStartNum" Height="auto" FontFamily="Century Gothic" Text="0 " Margin="10.4,5,14,4.6" FontSize="24" VerticalAlignment="Center" TextAlignment="Right"  >
         <TextBox.Background>
           <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
             <GradientStop Color="Green" Offset="0"/>
@@ -31,8 +35,8 @@
           </LinearGradientBrush>
         </TextBox.Background>
       </TextBox>
-      <Label Grid.Column="0" Grid.Row="1" Margin="0,5.4,0.6,6.2" FontSize="16" FontWeight="Bold" HorizontalAlignment= "Right" VerticalAlignment="Center" FontFamily="Century Gothic" Foreground="Black" Content="Ending Prime:" Grid.ColumnSpan="2" />
-      <TextBox Grid.Column="2" Grid.Row="1" x:Name="txtEndNum" Height="auto" FontFamily="Century Gothic" Text="0 " Margin="10.4,5.4,14,4.2" FontSize="24" VerticalAlignment="Center" TextAlignment="Right" GotFocus="txtEndNum_GotFocus"  >
+      <Label Grid.Column="0" Grid.Row="1" Margin="0,5.4,0.6,6.2" FontSize="16" FontWeight="Bold" HorizontalAlignment= "Right" VerticalAlignment="Center" FontFamily="Century Gothic" Foreground="Black" Content="Ending Prime:"  />
+      <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtEndNum" Height="auto" FontFamily="Century Gothic" Text="0 " Margin="10.4,5.4,14,4.2" FontSize="24" VerticalAlignment="Center" TextAlignment="Right"  >
         <TextBox.Background>
           <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
             <GradientStop Color="Green" Offset="0"/>
@@ -40,15 +44,10 @@
           </LinearGradientBrush>
         </TextBox.Background>
       </TextBox>
+      <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" x:Name="btnGenerate" HorizontalAlignment="Center" Width="120" FontWeight="Bold" Content="Generate" FontSize="18" Height="30" Margin="5" BorderThickness="1" BorderBrush="Black" Background="LightGray" Click="btnGenerate_Click" />
+      <ListBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="lstPrimes"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed" Margin="2,2,2,2" BorderBrush="DarkGoldenrod" BorderThickness="3" />
+      <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="Total Primes Found: " x:Name="txtTotalPrimes" FontSize="16" Visibility="Collapsed" />
+      <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Text="Elapsted Time: " x:Name="txtElapsedTime" FontSize="16" Visibility="Collapsed"  />
     </Grid>
-    <Button x:Name="btnGenerate" HorizontalAlignment="Center" Width="120" FontWeight="Bold" Content="Generate" FontSize="18" Height="30" Margin="5" BorderThickness="1" BorderBrush="Black" Background="LightGray" Click="btnGenerate_Click" />
-    <ListBox x:Name="lstPrimes" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Collapsed" Margin="3,2,0.8,2" BorderBrush="DarkGoldenrod" BorderThickness="3">
-      <!--
-      <ListBoxItem Background="Bisque" FontSize="14">a</ListBoxItem>
-      <ListBoxItem Background="WhiteSmoke" FontSize="14">b</ListBoxItem>
-      -->
-    </ListBox>
-    <TextBlock Text="Total Primes Found: " x:Name="txtTotalPrimes" FontSize="20" Visibility="Collapsed" />
-    <TextBlock Text="Elapsted Time: " x:Name="txtElapsedTime" FontSize="20" Visibility="Collapsed"  />
   </StackPanel>
 </Window>

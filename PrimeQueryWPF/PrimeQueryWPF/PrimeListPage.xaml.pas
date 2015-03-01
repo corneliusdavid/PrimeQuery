@@ -16,8 +16,8 @@ uses
 type
   PrimeListPage = public partial class(System.Windows.Window)
   private
-    method txtEndNum_GotFocus(sender: System.Object; e: System.Windows.RoutedEventArgs);
-    method txtStartNum_GotFocus(sender: System.Object; e: System.Windows.RoutedEventArgs);
+    SaveCountText: String;
+    SaveElapsedText: String;
     method btnGenerate_Click(sender: System.Object; e: System.Windows.RoutedEventArgs);
   protected
     method ListPrimeFound(sender: System.Object; aEventArgs: EventArgs);
@@ -33,6 +33,10 @@ uses
 constructor PrimeListPage;
 begin
   InitializeComponent();
+
+  SaveCountText := txtTotalPrimes.Text;
+  SaveElapsedText := txtElapsedTime.Text;
+  grdPrimeList.Height := Height - btnGenerate.Height;
 end;
 
 method PrimeListPage.btnGenerate_Click(sender: System.Object; e: System.Windows.RoutedEventArgs);
@@ -45,25 +49,44 @@ begin
   UInt64.TryParse(txtStartNum.Text, out MinPrime);
   UInt64.TryParse(txtEndNum.Text, out MaxPrime);
 
-  PrimeNumLst.MinNumber := MinPrime;
-  PrimeNumLst.MaxNumber := MaxPrime;
-  PrimeNumLst.OnFoundPrime += @ListPrimeFound;
-  PrimeNumLst.Generate;
+  System.Windows.Input.Mouse.OverrideCursor := System.Windows.Input.Cursors.Wait;
+  try
+    txtTotalPrimes.Visibility := Visibility.Visible;
+    txtElapsedTime.Visibility := Visibility.Visible;
+    lstPrimes.Visibility := Visibility.Visible;
+
+    lstPrimes.Items.Clear;
+
+    PrimeNumLst.MinNumber := MinPrime;
+    PrimeNumLst.MaxNumber := MaxPrime;
+    PrimeNumLst.OnFoundPrime += @ListPrimeFound;
+    PrimeNumLst.Generate;
+
+    txtTotalPrimes.Visibility := Visibility.Visible;
+    txtTotalPrimes.Text := SaveCountText + PrimeNumLst.Count.ToString;
+    txtElapsedTime.Visibility := Visibility.Visible;
+    txtElapsedTime.Text := SaveElapsedText + PrimeNumLst.ElapsedTime.ToString;
+  except
+    on Exception do
+      MessageBox.Show('Error: ' + e.ToString);
+  finally
+    System.Windows.Input.Mouse.OverrideCursor := nil;
+  end;
 end;
 
 method PrimeListPage.ListPrimeFound(sender: Object; aEventArgs: EventArgs);
+var
+  NewListItem: ListBoxItem;
 begin
-  lstPrimes.Items.Add((sender as PrimeNumberList).Number);
+  NewListItem := new ListBoxItem;
+
+  if (sender as PrimeNumberList).Count mod 2 = 0 then
+    NewListItem.Background := Brushes.WhiteSmoke
+  else 
+    NewListItem.Background := Brushes.Bisque;
+
+  NewListItem.Content := (sender as PrimeNumberList).Number;
+  lstPrimes.Items.Add(NewListItem);
 end;
 
-method PrimeListPage.txtStartNum_GotFocus(sender: System.Object; e: System.Windows.RoutedEventArgs);
-begin
-  txtStartNum.SelectAll;
-end;
-
-method PrimeListPage.txtEndNum_GotFocus(sender: System.Object; e: System.Windows.RoutedEventArgs);
-begin
-  txtEndNum.SelectAll;
-end;
-  
 end.

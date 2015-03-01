@@ -14,8 +14,12 @@ type
     property Number: UInt64 read write;
     property AsString: String read GetAsString write SetAsString;
     event NumberChanged: EventHandler;
+    constructor;
   public invariants
-    Number <= HighestSupportedNumber;
+    Number > 0:
+      'Prime numbers by definition are greater than 0.';
+    Number <= HighestSupportedNumber:
+      'Maximum value handled by this application is ' + HighestSupportedNumber.ToString;
   end;
 
   PrimeNumberEdit = public class(PrimeNumberQuery)
@@ -43,8 +47,14 @@ type
     method ElapsedTime: TimeSpan;    
     event OnFoundPrime: EventHandler;
   public invariants
-    MaxNumber <= HighestSupportedNumber;
-    MinNumber < MaxNumber;
+    MinNumber > 0:
+      'Prime numbers by definition are greater than 0.';
+    MaxNumber > 0:
+      'Prime numbers by definition are greater than 0.';
+    MaxNumber <= HighestSupportedNumber: 
+      'Maximum value handled by this application is ' + HighestSupportedNumber.ToString;
+    MinNumber < MaxNumber:
+      'The number specified for the minimum must be less than the maximum number.'
   end;
 
 implementation
@@ -94,6 +104,11 @@ begin
     if assigned(NumberChanged) then
       NumberChanged(self, EventArgs.Empty);
   end;
+end;
+
+constructor PrimeNumberQuery;
+begin
+  Number := 1;
 end;
 {$ENDREGION}
 
