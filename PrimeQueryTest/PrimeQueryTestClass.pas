@@ -79,26 +79,12 @@ end;
 
 method PrimeQueryTestClass.Test0;
 begin
-(*
-  try
-    Assert.IsFalse(FPrimeNumQry.IsPrime(0));
-    raise new AssertException('calling IsPrime with less than 2 should raise an error');
-  except
-    
-  end;
-*)
+  Assert.IsFalse(FPrimeNumQry.IsPrime(0));
 end;
 
 method PrimeQueryTestClass.Test1;
 begin
-(*
-  try
-    Assert.IsFalse(FPrimeNumQry.IsPrime(1));
-    raise new AssertException('calling IsPrime with less than 2 should raise an error');
-  except
-
-  end;
-*)
+  Assert.IsFalse(FPrimeNumQry.IsPrime(1));
 end;
 
 method PrimeQueryTestClass.Test5;

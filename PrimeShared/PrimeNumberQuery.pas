@@ -16,8 +16,6 @@ type
     event NumberChanged: EventHandler;
     constructor;
   public invariants
-    Number > 0:
-      'Prime numbers by definition are greater than 0.';
     Number <= HighestSupportedNumber:
       'Maximum value handled by this application is ' + HighestSupportedNumber.ToString;
   end;
@@ -47,14 +45,10 @@ type
     method ElapsedTime: TimeSpan;    
     event OnFoundPrime: EventHandler;
   public invariants
-    MinNumber > 0:
-      'Prime numbers by definition are greater than 0.';
-    MaxNumber > 0:
-      'Prime numbers by definition are greater than 0.';
+    { invariants are only for debugging as they raise Assertion exceptions }
     MaxNumber <= HighestSupportedNumber: 
       'Maximum value handled by this application is ' + HighestSupportedNumber.ToString;
-    MinNumber < MaxNumber:
-      'The number specified for the minimum must be less than the maximum number.'
+    // MinNumber < MaxNumber: 'The number specified for the minimum must be less than the maximum number.';
   end;
 
 implementation
@@ -167,7 +161,14 @@ begin
 end;
 
 method PrimeNumberList.Generate;
+{ require clauses are only for debugging as they raise Assertion exceptions 
+require
+  MaxNumber > MinNumber;
+}
 begin
+  if MinNumber > MaxNumber then
+    raise new Exception('The MaxNumber of the range must be greater than MinNumber.');
+
   Number := MinNumber;
   StartTime := DateTime.Now;
   PrimeCount := 0;

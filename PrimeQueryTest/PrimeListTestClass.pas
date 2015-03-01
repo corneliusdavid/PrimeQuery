@@ -24,6 +24,7 @@ type
     method Test1to100;
     method Test100to200;
     method Test1to10000;
+    method Test10to1;
   end;
 
 implementation
@@ -109,6 +110,11 @@ method PrimeListTestClass.Test4to10;
 begin
   TestRange(4, 10);
   Assert.AreEqual(FPrimeNumLst.Count, 2);
+end;
+
+method PrimeListTestClass.Test10to1;
+begin
+  Assert.Throws(method begin TestRange(10, 1); end, typeOf(Exception));
 end;
 
 end.
