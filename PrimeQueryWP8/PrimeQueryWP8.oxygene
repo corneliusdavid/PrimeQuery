@@ -107,6 +107,10 @@
     <Compile Include="MainPage.xaml.pas">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrimeNumListPage.xaml.pas">
+      <SubType>Code</SubType>
+      <DependentUpon>PrimeNumListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.pas" />
     <Compile Include="Resources\AppResources.Designer.pas">
       <DependentUpon>Resources\AppResources.resx</DependentUpon>
@@ -118,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrimeNumListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
