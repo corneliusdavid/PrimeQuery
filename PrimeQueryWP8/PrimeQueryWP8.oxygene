@@ -125,10 +125,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PrimeNumListPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Page Include="PrimeNumListPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
