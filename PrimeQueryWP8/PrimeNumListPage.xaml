@@ -14,19 +14,20 @@
     shell:SystemTray.IsVisible="True">
   <phone:PhoneApplicationPage.Resources>
     <DataTemplate x:Key="PrimeNumItemTemplate">
-      <TextBlock FontSize="26" Text="{Binding PrimeNum}" />
+      <TextBlock FontSize="26" Foreground="White" Text="{Binding }" />
+      
     </DataTemplate>
   </phone:PhoneApplicationPage.Resources>
 
   <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
     <StackPanel HorizontalAlignment="Stretch" Margin="0,0,0,0">
-      <Grid x:Name="grdPrimeList" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,0">
+      <Grid x:Name="grdPrimeList" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,0,10,5">
         <Grid.RowDefinitions>
           <RowDefinition Height="70" />
           <RowDefinition Height="70" />
           <RowDefinition Height="80" />
-          <RowDefinition Height="155" />
+          <RowDefinition Height="275" />
           <RowDefinition Height="45" />
           <RowDefinition Height="45" />
         </Grid.RowDefinitions>
@@ -36,7 +37,7 @@
 
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" Grid.Row="0" Margin="0,0,0,0" FontSize="26" HorizontalAlignment= "Right" VerticalAlignment='Center' FontFamily="Century Gothic" Text="Starting Prime:"  />
-        <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtStartNum" Height="auto" FontFamily="Century Gothic" Text="0 " Margin="0" FontSize="24" VerticalAlignment="Center" TextAlignment="Right"  >
+        <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtStartNum" Height="auto" FontFamily="Century Gothic" Text="{Binding MinPrimeNum, Mode=TwoWay}" Margin="0" FontSize="24" VerticalAlignment="Center" TextAlignment="Right"  >
           <TextBox.Background>
             <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
               <GradientStop Color="Green" Offset="0"/>
@@ -45,7 +46,7 @@
           </TextBox.Background>
         </TextBox>
         <TextBlock Grid.Column="0" Grid.Row="1" Margin="0" FontSize="26" HorizontalAlignment= "Right" VerticalAlignment="Center" FontFamily="Century Gothic" Text="Ending Prime:"  />
-        <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtEndNum" Height="auto" FontFamily="Century Gothic" Text="0 " Margin="0" FontSize="24" VerticalAlignment="Center" TextAlignment="Right"  >
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtEndNum" Height="auto" FontFamily="Century Gothic" Text="{Binding MaxPrimeNum, Mode=TwoWay}" Margin="0" FontSize="24" VerticalAlignment="Center" TextAlignment="Right"  >
           <TextBox.Background>
             <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
               <GradientStop Color="Green" Offset="0"/>
@@ -54,7 +55,8 @@
           </TextBox.Background>
         </TextBox>
         <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" x:Name="btnGenerate" HorizontalAlignment="Center" Width="180" Content="Generate" FontSize="28" Height="80" Margin="2" Background="DarkGray" Foreground="Black" Click="btnGenerate_Click" />
-        <phone:LongListSelector Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="lstPrimes"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Visible" Margin="2,2,2,2" BorderBrush="DarkGoldenrod" BorderThickness="3" />
+
+        <phone:LongListSelector x:Name="lstPrimes" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Visible" Margin="2,2,2,2" BorderBrush="DarkGoldenrod" BorderThickness="3" ItemsSource="{Binding PrimeList}" ItemTemplate="{StaticResource PrimeNumItemTemplate}" />
 
         <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="Total Primes Found: " x:Name="txtTotalPrimes" FontSize="26" Visibility="Visible" />
         <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Text="Elapsted Time: " x:Name="txtElapsedTime" FontSize="26" Visibility="Visible"  />

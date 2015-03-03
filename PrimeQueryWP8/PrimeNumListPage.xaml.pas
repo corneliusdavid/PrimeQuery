@@ -20,14 +20,18 @@ type
     SaveCountText: String;
     SaveElapsedText: String;
   protected
-    //method ListPrimeFound(sender: System.Object; aEventArgs: EventArgs);
+    method AddPrimeFound(sender: System.Object; aEventArgs: EventArgs);
   public
+    property PrimeList: List<UInt64>; notify;
+    property MinPrimeNum: UInt64 := 1; notify;
+    property MaxPrimeNum: UInt64 := 1000; notify;
     constructor ;
   end;
 
 implementation
 
 uses
+  System.ServiceModel.Channels,
   PrimeQuery;
 
 constructor PrimeNumListPage;
@@ -36,31 +40,29 @@ begin
 
   SaveCountText := txtTotalPrimes.Text;
   SaveElapsedText := txtElapsedTime.Text;
+
+  PrimeList := new List<UInt64>;
+  lstPrimes.DataContext := self;  
+  grdPrimeList.DataContext := self;
 end;
 
 method PrimeNumListPage.btnGenerate_Click(sender: System.Object; e: System.Windows.RoutedEventArgs);
 var
   PrimeNumLst: PrimeNumberList;
-  MinPrime, MaxPrime: UInt64;
-begin
-  PrimeNumLst := new PrimeNumberList;
-
-  UInt64.TryParse(txtStartNum.Text, out MinPrime);
-  UInt64.TryParse(txtEndNum.Text, out MaxPrime);
-
+begin  
   try
     txtTotalPrimes.Visibility := Visibility.Visible;
     txtElapsedTime.Visibility := Visibility.Visible;
     lstPrimes.Visibility := Visibility.Visible;
 
-{
-    lstPrimes. Items.Clear;
+    PrimeList.Clear;
 
-    PrimeNumLst.MinNumber := MinPrime;
-    PrimeNumLst.MaxNumber := MaxPrime;
-    PrimeNumLst.OnFoundPrime += @ListPrimeFound;
+    PrimeNumLst := new PrimeNumberList;
+    PrimeNumLst.MinNumber := MinPrimeNum;
+    PrimeNumLst.MaxNumber := MaxPrimeNum;
+    PrimeNumLst.OnFoundPrime += @AddPrimeFound;
     PrimeNumLst.Generate;
-}
+
     txtTotalPrimes.Visibility := Visibility.Visible;
     txtTotalPrimes.Text := SaveCountText + PrimeNumLst.Count.ToString;
     txtElapsedTime.Visibility := Visibility.Visible;
@@ -69,6 +71,11 @@ begin
     on Exception do
       MessageBox.Show('Error: ' + e.ToString);
   end;
+end;
+
+method PrimeNumListPage.AddPrimeFound(sender: Object; aEventArgs: EventArgs);
+begin
+  PrimeList.Add((sender as PrimeNumberList).Number);
 end;
 
 end.
