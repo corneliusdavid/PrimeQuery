@@ -14,6 +14,12 @@ uses
   Microsoft.Phone.Shell;
 
 type
+  PrimeNumListItem = public class
+  public
+    property PrimeNum: UInt64;
+    constructor(NewPrimeNum: UInt64);
+  end;
+
   PrimeNumListPage = public partial class(PhoneApplicationPage)
   private
     method btnGenerate_Click(sender: System.Object; e: System.Windows.RoutedEventArgs);
@@ -22,7 +28,7 @@ type
   protected
     method AddPrimeFound(sender: System.Object; aEventArgs: EventArgs);
   public
-    property PrimeList: List<UInt64>; notify;
+    property PrimeList: List<PrimeNumListItem>; notify;
     property MinPrimeNum: UInt64 := 1; notify;
     property MaxPrimeNum: UInt64 := 1000; notify;
     constructor ;
@@ -34,6 +40,15 @@ uses
   System.ServiceModel.Channels,
   PrimeQuery;
 
+{ PrimeNumListItem }
+
+constructor PrimeNumListItem(NewPrimeNum: UInt64);
+begin
+  PrimeNum := NewPrimeNum;
+end;
+
+{ PrimeNumListPage }
+
 constructor PrimeNumListPage;
 begin
   InitializeComponent();
@@ -41,7 +56,6 @@ begin
   SaveCountText := txtTotalPrimes.Text;
   SaveElapsedText := txtElapsedTime.Text;
 
-  PrimeList := new List<UInt64>;
   lstPrimes.DataContext := self;  
   grdPrimeList.DataContext := self;
 end;
@@ -55,7 +69,7 @@ begin
     txtElapsedTime.Visibility := Visibility.Visible;
     lstPrimes.Visibility := Visibility.Visible;
 
-    PrimeList.Clear;
+    PrimeList := new List<PrimeNumListItem>;
 
     PrimeNumLst := new PrimeNumberList;
     PrimeNumLst.MinNumber := MinPrimeNum;
@@ -75,7 +89,7 @@ end;
 
 method PrimeNumListPage.AddPrimeFound(sender: Object; aEventArgs: EventArgs);
 begin
-  PrimeList.Add((sender as PrimeNumberList).Number);
+  PrimeList.Add(new PrimeNumListItem((sender as PrimeNumberList).Number));
 end;
 
 end.
