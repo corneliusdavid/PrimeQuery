@@ -18,7 +18,6 @@ type
   MainPage = public partial class(System.Windows.Window)
   private
     APrimeQry: PrimeNumberEdit;
-    PrimesPage: PrimeListPage;
     ClearDisplay: Boolean;
     method DigitClick(sender: System.Object; e: System.Windows.RoutedEventArgs);
     method btnPrimeCheck(sender: System.Object; e: System.Windows.RoutedEventArgs);
@@ -39,7 +38,6 @@ constructor MainPage;
 begin
   InitializeComponent();
 
-  PrimesPage := nil;
   ClearDisplay := False;
 
   APrimeQry := new PrimeNumberEdit;
@@ -79,19 +77,6 @@ begin
   APrimeQry.Backspace;
 end;
 
-method MainPage.btnMoreClick(sender: Object; e: RoutedEventArgs);
-begin
-  if not assigned(PrimesPage) then begin 
-    PrimesPage := new PrimeListPage;
-    PrimesPage.Owner := self;
-    PrimesPage.Left := self.Left + self.Width;
-  end;
-    
-  PrimesPage.ShowDialog;
-
-  PrimesPage := nil;
-end;
-
 method MainPage.UpdateWhenChanged(sender: System.Object; aEventArgs: EventArgs);
 begin
   txtNumber.Text := APrimeQry.AsString + ' ';
@@ -100,6 +85,17 @@ end;
 method MainPage.btnInfo(sender: Object; e: RoutedEventArgs);
 begin
   MessageBox.Show('Checks a number for primality.  By Cornelius Concepts, 2015');
+end;
+
+method MainPage.btnMoreClick(sender: Object; e: RoutedEventArgs);
+var
+  PrimesPage: PrimeListPage;
+begin
+  PrimesPage := new PrimeListPage;
+  PrimesPage.Owner := self;
+  PrimesPage.Left := self.Left + self.Width;
+    
+  PrimesPage.ShowDialog;
 end;
 
 end.
