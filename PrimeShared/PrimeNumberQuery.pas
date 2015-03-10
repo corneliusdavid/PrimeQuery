@@ -5,20 +5,25 @@ interface
 type
   PrimeNumberQuery = public class
   protected
+    FNumber: UInt64;
     method GetAsString: String;
     method SetAsString(NumStr: String);
+    method SetNumber(NewNumber: UInt64);
   public
     const HighestSupportedNumber = 4000000000000; // 4 trillion
     class method IsPrime(const TestNumber: UInt64): Boolean;
     method IsPrime: Boolean;
-    property Number: UInt64 read write;
+    property Number: UInt64 read FNumber write SetNumber;
     property AsString: String read GetAsString write SetAsString;
     event NumberChanged: EventHandler;
     constructor;
   public invariants
+    // invariants are only for debugging as they raise Assertion exceptions 
     Number <= HighestSupportedNumber:
       'Maximum value handled by this application is ' + HighestSupportedNumber.ToString;
   end;
+
+
 
   PrimeNumberEdit = public class(PrimeNumberQuery)
   public
@@ -29,6 +34,8 @@ type
     method IncNumber;
     method DecNumber;
   end;
+
+
 
   PrimeNumberList = public class(PrimeNumberQuery)
   private
@@ -45,10 +52,9 @@ type
     method ElapsedTime: TimeSpan;    
     event OnFoundPrime: EventHandler;
   public invariants
-    { invariants are only for debugging as they raise Assertion exceptions }
+    // invariants are only for debugging as they raise Assertion exceptions 
     MaxNumber <= HighestSupportedNumber: 
       'Maximum value handled by this application is ' + HighestSupportedNumber.ToString;
-    // MinNumber < MaxNumber: 'The number specified for the minimum must be less than the maximum number.';
   end;
 
 implementation
@@ -93,7 +99,7 @@ begin
   UInt64.TryParse(NumStr, out NewNum);
 
   if NewNum <> Number then begin
-    Number := NewNum;
+    FNumber := NewNum;
     
     if assigned(NumberChanged) then
       NumberChanged(self, EventArgs.Empty);
@@ -102,7 +108,17 @@ end;
 
 constructor PrimeNumberQuery;
 begin
-  Number := 1;
+  FNumber := 1;
+end;
+
+method PrimeNumberQuery.SetNumber(NewNumber: UInt64);
+begin
+  if NewNumber <> FNumber then begin
+    FNumber := NewNumber;
+    
+    if assigned(NumberChanged) then
+      NumberChanged(self, EventArgs.Empty);
+  end;
 end;
 {$ENDREGION}
 
