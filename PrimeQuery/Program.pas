@@ -66,6 +66,13 @@ begin
               [PrimeNumLst.Count, PrimeNumLst.ElapsedTime.TotalSeconds]);
 end;
 
+class method ConsoleApp.OnPrimeFound(sender: Object; aEventArgs: EventArgs);
+begin
+  if (sender as PrimeNumberList).Count > 1 then
+    Console.Write(', ');
+  Console.Write((sender as PrimeNumberList).Number);
+end;
+
 class method ConsoleApp.ListPrimes(LastNumber: UInt64);
 var  
   PrimeNumLst: PrimeNumberList;
@@ -92,6 +99,24 @@ begin
     Console.WriteLine('{0} is not a prime.', [num]);
 end;
 
+class method ConsoleApp.MainLoop;
+var 
+  done := false;
+begin
+  repeat
+    case ConsoleMenu of
+      MenuAction.maExit:
+        done := True;
+      MenuAction.maTestPrime:
+        TestPrime;
+      MenuAction.maListPrimes:
+        ListPrimes;
+      MenuAction.maInvalid:
+        Console.WriteLine('Invalid command');
+    end;
+  until done;
+end;
+
 class method ConsoleApp.Main(args: array of String);
 const 
   CRLF = #13#10;
@@ -115,31 +140,6 @@ begin
         Console.WriteLine('Invalid Parameter: ' + args[i]);
   end else       
     MainLoop;
-end;
-
-class method ConsoleApp.MainLoop;
-var 
-  done := false;
-begin
-  repeat
-    case ConsoleMenu of
-      MenuAction.maExit:
-        done := True;
-      MenuAction.maTestPrime:
-        TestPrime;
-      MenuAction.maListPrimes:
-        ListPrimes;
-      MenuAction.maInvalid:
-        Console.WriteLine('Invalid command');
-    end;
-  until done;
-end;
-
-class method ConsoleApp.OnPrimeFound(sender: Object; aEventArgs: EventArgs);
-begin
-  if (sender as PrimeNumberList).Count > 1 then
-    Console.Write(', ');
-  Console.Write((sender as PrimeNumberList).Number);
 end;
 
 end.

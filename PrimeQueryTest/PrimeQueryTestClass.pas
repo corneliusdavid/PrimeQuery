@@ -33,14 +33,24 @@ type
 
 implementation
 
-method PrimeQueryTestClass.Test2;
-begin
-  Assert.IsTrue(FPrimeNumQry.IsPrime(2));
-end;
-
 method PrimeQueryTestClass.Setup;
 begin
   FPrimeNumQry := new PrimeNumberQuery;
+end;
+
+method PrimeQueryTestClass.Test0;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(0));
+end;
+
+method PrimeQueryTestClass.Test1;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(1));
+end;
+
+method PrimeQueryTestClass.Test2;
+begin
+  Assert.IsTrue(FPrimeNumQry.IsPrime(2));
 end;
 
 method PrimeQueryTestClass.Test3;
@@ -51,6 +61,26 @@ end;
 method PrimeQueryTestClass.Test4;
 begin
   Assert.IsFalse(FPrimeNumQry.IsPrime(4));
+end;
+
+method PrimeQueryTestClass.Test5;
+begin
+  Assert.IsTrue(FPrimeNumQry.IsPrime(5));
+end;
+
+method PrimeQueryTestClass.Test6;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(6));
+end;
+
+method PrimeQueryTestClass.Test7;
+begin
+  Assert.IsTrue(FPrimeNumQry.IsPrime(7));
+end;
+
+method PrimeQueryTestClass.Test8;
+begin
+  Assert.IsFalse(FPrimeNumQry.IsPrime(8));
 end;
 
 method PrimeQueryTestClass.Test13;
@@ -75,36 +105,6 @@ method PrimeQueryTestClass.TestCheck;
 begin
   Assert.IsFalse(FPrimeNumQry.IsPrime(8));
   Assert.IsTrue(FPrimeNumQry.IsPrime(17));
-end;
-
-method PrimeQueryTestClass.Test0;
-begin
-  Assert.IsFalse(FPrimeNumQry.IsPrime(0));
-end;
-
-method PrimeQueryTestClass.Test1;
-begin
-  Assert.IsFalse(FPrimeNumQry.IsPrime(1));
-end;
-
-method PrimeQueryTestClass.Test5;
-begin
-  Assert.IsTrue(FPrimeNumQry.IsPrime(5));
-end;
-
-method PrimeQueryTestClass.Test6;
-begin
-  Assert.IsFalse(FPrimeNumQry.IsPrime(6));
-end;
-
-method PrimeQueryTestClass.Test7;
-begin
-  Assert.IsTrue(FPrimeNumQry.IsPrime(7));
-end;
-
-method PrimeQueryTestClass.Test8;
-begin
-  Assert.IsFalse(FPrimeNumQry.IsPrime(8));
 end;
 
 method PrimeQueryTestClass.Test999999999999997;
