@@ -4,6 +4,9 @@ interface
 
 type
   PrimeNumberQuery = public class
+  private
+    FNumber: UInt64;
+    method SetNumber(NewNum: UInt64);
   protected
     method GetAsString: String;
     method SetAsString(NumStr: String);
@@ -11,7 +14,7 @@ type
     const HighestSupportedNumber = 4000000000000; // 4 trillion
     class method IsPrime(const TestNumber: UInt64): Boolean;
     method IsPrime: Boolean;
-    property Number: UInt64 read write;
+    property Number: UInt64 read FNumber write SetNumber;
     property AsString: String read GetAsString write SetAsString;
     event NumberChanged: EventHandler;
     constructor;
@@ -57,7 +60,7 @@ implementation
 
 class method PrimeNumberQuery.IsPrime(const TestNumber: UInt64): Boolean;
 var 
-  max: UInt64 := UInt64(Math.Round(Math.Sqrt(Double(TestNumber))));
+  max := UInt64(Math.Round(Math.Sqrt(Double(TestNumber))));
 begin
   // handle 2 and 3, false for numbers less than 2
   if TestNumber <= 3 then
@@ -103,6 +106,16 @@ end;
 constructor PrimeNumberQuery;
 begin
   Number := 1;
+end;
+
+method PrimeNumberQuery.SetNumber(NewNum: UInt64);
+begin
+  if NewNum <> FNumber then begin
+    FNumber := NewNum;
+
+    if assigned(NumberChanged) then
+      NumberChanged(self, EventArgs.Empty);
+  end;
 end;
 {$ENDREGION}
 
