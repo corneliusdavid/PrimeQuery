@@ -11,12 +11,10 @@ There are three classes in one shared project file:
 * PrimeNumberEdit - a class to centralize user interface functionality
 * PrimeNumberList - a class to make it easy to generate a range of prime number.
 
-The environments supported include:
+The environments supported in this branch include:
 * Unit testing - using EUnit, RemObject's Oxygene version of NUnit
 * Console app
 * Windows Desktop app using WPF/XAML
 * Windows Phone app (XAML)
-* ASP.NET Web Forms app (in development)
-* ASP.NET MVC Web app (future)
-* Android app (future)
-* iPhone app (maybe)
+
+For more environments, see the "web_apps" branch.
