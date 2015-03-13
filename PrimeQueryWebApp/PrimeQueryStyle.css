@@ -1,0 +1,50 @@
+body {
+  background-color: navy;
+}
+
+.title {
+  text-align: center;
+  font-size: large;
+  font-weight: 700;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: lemonchiffon;
+}
+
+.instruction {
+  text-align: center;
+  font-size: medium;
+  font-weight: 600;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: aqua;
+}
+
+.primeentry {
+  text-align: right;
+  background: cornflowerblue;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: navy;  
+}
+
+.functionbutton {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: blanchedalmond;
+  background-color: darkblue;
+  height: 50px;
+}
+
+.isprimelabel {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: larger;
+  font-weight: 700;
+  color: yellow;
+}
+
+.notprimelabel {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: medium;
+  font-weight:500;
+  color: lightcyan;
+}
