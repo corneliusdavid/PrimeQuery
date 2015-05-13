@@ -2,6 +2,7 @@
 
 interface
 
+
 type
   PrimeNumberQuery = public class
   private
@@ -20,7 +21,7 @@ type
     constructor;
   public invariants
     Number <= HighestSupportedNumber:
-      'Maximum value handled by this application is ' + HighestSupportedNumber.ToString;
+      'Maximum value handled by this application is ' + HighestSupportedNumber.toString;
   end;
 
   PrimeNumberEdit = public class(PrimeNumberQuery)
@@ -45,12 +46,14 @@ type
     property Count: UInt32 read PrimeCount;
     constructor;
     method Generate;
-    method ElapsedTime: TimeSpan;    
+    {$IF CLR}
+    method ElapsedTime:  TimeSpan;    
+    {$ENDIF}
     event OnFoundPrime: EventHandler;
   public invariants
     { invariants are only for debugging as they raise Assertion exceptions }
     MaxNumber <= HighestSupportedNumber: 
-      'Maximum value handled by this application is ' + HighestSupportedNumber.ToString;
+      'Maximum value handled by this application is ' + HighestSupportedNumber.toString;
     // MinNumber < MaxNumber: 'The number specified for the minimum must be less than the maximum number.';
   end;
 
@@ -86,14 +89,18 @@ end;
 
 method PrimeNumberQuery.GetAsString: String;
 begin
-  Result := Number.ToString;
+  Result := Number.toString;
 end;
 
 method PrimeNumberQuery.SetAsString(NumStr: String);
 var
   NewNum: UInt64;
 begin
+  {$IF CLR}
   UInt64.TryParse(NumStr, out NewNum);
+  {$ELSE}
+  UInt64.parseLong(NumStr, NewNum);
+  {$ENDIF}
 
   if NewNum <> Number then begin
     Number := NewNum;
@@ -128,8 +135,8 @@ end;
 
 method PrimeNumberEdit.Backspace;
 begin
-  if Number.ToString.Length > 1 then
-    SetAsString(Number.ToString.Substring(0, Number.ToString.Length - 1).ToString)
+  if Number.toString.length > 1 then
+    setAsString(Number.toString.substring(0, Number.toString.length - 1).toString)
   else
     Number := 0;
 end;
@@ -137,7 +144,7 @@ end;
 method PrimeNumberEdit.AddDigit(NewDigit: UInt64);
 begin
   if Number > 0 then
-    SetAsString(Number.ToString + NewDigit.ToString)
+    setAsString(Number.toString + NewDigit.toString)
   else
     Number := NewDigit;
 end;
@@ -145,9 +152,9 @@ end;
 method PrimeNumberEdit.AddDigit(NewDigit: String);
 begin
   if Number > 0 then
-    SetAsString(Number.ToString + NewDigit)
+    setAsString(Number.toString + NewDigit)
   else
-    SetAsString(NewDigit);
+    setAsString(NewDigit);
 end;
 
 method PrimeNumberEdit.IncNumber;
@@ -169,8 +176,13 @@ begin
   MaxNumber := HighestSupportedNumber;
   Number := MinNumber;
   PrimeCount := 0;
+  {$IF CLR}
   StartTime := DateTime.MinValue;
   StopTime := DateTime.MinValue;
+  {$ELSE}
+  StartTime := new DateTime(1900, 1, 1);
+  StopTime := new DateTime(1900, 1, 1);
+  {$ENDIF}
 end;
 
 method PrimeNumberList.Generate;
@@ -204,10 +216,12 @@ begin
     OnFoundPrime(self, EventArgs.Empty);
 end;
 
+{$IF CLR}
 method PrimeNumberList.ElapsedTime: TimeSpan;
 begin
   result := StopTime.Subtract(StartTime);
 end;
+{$ENDIF}
 
 {$ENDREGION}
 
