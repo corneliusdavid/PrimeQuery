@@ -16,7 +16,5 @@ The environments supported in this branch include:
 * Console app
 * Windows Desktop app using WPF/XAML
 * Windows Phone app (XAML)
-* ASP.NET Web Forms app (in development)
-* ASP.NET MVC Web app (future)
-* Android app (future)
-* iPhone app (maybe)
+
+For more environments, see the "web_apps" branch.
