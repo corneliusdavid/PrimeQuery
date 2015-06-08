@@ -80,7 +80,7 @@ begin
     txtTotalPrimes.Visibility := Visibility.Visible;
     txtTotalPrimes.Text := SaveCountText + PrimeNumLst.Count.ToString;
     txtElapsedTime.Visibility := Visibility.Visible;
-    txtElapsedTime.Text := SaveElapsedText + PrimeNumLst.ElapsedTime.ToString;
+    txtElapsedTime.Text := SaveElapsedText + PrimeNumLst.ElapsedSeconds.ToString;
   except
     on Exception do
       MessageBox.Show('Error: ' + e.ToString);

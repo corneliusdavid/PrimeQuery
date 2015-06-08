@@ -29,6 +29,9 @@
     <Reference Include="mscorlib">
       <HintPath>$(Framework)\mscorlib.dll</HintPath>
     </Reference>
+    <Reference Include="Sugar">
+      <HintPath>C:\Program Files (x86)\RemObjects Software\Oxygene\Sugar\Echoes\Sugar.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -52,9 +55,13 @@
     <Content Include="Default.aspx" />
     <Compile Include="Default.aspx.pas">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <DesignableClassName>PrimeQueryWebApp._Default</DesignableClassName>
     </Compile>
     <Compile Include="Default.aspx.designer.pas">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+      <DesignableClassName>PrimeQueryWebApp._Default</DesignableClassName>
     </Compile>
     <Content Include="Global.asax" />
     <Compile Include="Global.asax.pas">

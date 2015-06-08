@@ -49,7 +49,7 @@ begin
   FPrimeNumLst.Generate;
 
   Console.WriteLine('; {0} total primes in {1} seconds.', 
-              [FPrimeNumLst.Count, FPrimeNumLst.ElapsedTime.TotalSeconds])
+              [FPrimeNumLst.Count, FPrimeNumLst.ElapsedSeconds])
 end;
 
 method PrimeListTestClass.Test1to100;

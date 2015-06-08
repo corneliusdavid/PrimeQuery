@@ -63,7 +63,7 @@ begin
 
   Console.WriteLine;
   Console.WriteLine('{0} total primes in {1} seconds.', 
-              [PrimeNumLst.Count, PrimeNumLst.ElapsedTime.TotalSeconds]);
+              [PrimeNumLst.Count, PrimeNumLst.ElapsedSeconds]);
 end;
 
 class method ConsoleApp.OnPrimeFound(sender: Object; aEventArgs: EventArgs);
@@ -84,7 +84,7 @@ begin
   PrimeNumLst.Generate;
 
   Console.WriteLine('{0} total primes in {1} seconds.', 
-              [PrimeNumLst.Count, PrimeNumLst.ElapsedTime.TotalSeconds]);
+              [PrimeNumLst.Count, PrimeNumLst.ElapsedSeconds]);
 end;
 
 class method ConsoleApp.TestPrime;

@@ -41,7 +41,7 @@ begin
   ClearDisplay := False;
 
   APrimeQry := new PrimeNumberEdit;
-  APrimeQry.NumberChanged += @UpdateWhenChanged;
+  APrimeQry.OnNumberChanged += @UpdateWhenChanged;
 end;
 
 method MainPage.DigitClick(sender: System.Object; e: System.Windows.RoutedEventArgs);

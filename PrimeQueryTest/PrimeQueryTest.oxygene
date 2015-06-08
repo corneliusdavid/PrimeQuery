@@ -65,17 +65,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PrimeEditTestClass.pas">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PrimeQueryTestClass.pas">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="PrimeEditTestClass.pas" />
+    <Compile Include="PrimeQueryTestClass.pas" />
     <Compile Include="Program.pas" />
     <Compile Include="Properties\AssemblyInfo.pas" />
-    <Compile Include="PrimeListTestClass.pas">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="PrimeListTestClass.pas" />
     <Content Include="Properties\App.ico" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

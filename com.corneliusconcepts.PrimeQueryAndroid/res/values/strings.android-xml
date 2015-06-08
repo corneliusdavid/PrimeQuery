@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Prime Query</string>
+  <string name="button_send">Send</string>
+  <string name="button_clear">Clr</string>
+  <string name="button_backspace">BkSp</string>
+  <string name="button_more">More</string>
+</resources>

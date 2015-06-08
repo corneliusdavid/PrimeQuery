@@ -57,7 +57,7 @@
       <phone:LongListSelector x:Name="lstPrimes" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed" Margin="20,2,20,2" ItemsSource="{Binding PrimeList}" ItemTemplate="{StaticResource PrimeNumItemTemplate}" />
         
       <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Foreground="DarkKhaki" Text="Total Primes Found: " x:Name="txtTotalPrimes" FontSize="26" Visibility="Collapsed" />
-      <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Foreground="DarkKhaki" Text="Elapsed Time: " x:Name="txtElapsedTime" FontSize="26" Visibility="Collapsed"  />
+      <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Foreground="DarkKhaki" Text="Elapsed Time (seconds): " x:Name="txtElapsedTime" FontSize="26" Visibility="Collapsed"  />
     </Grid>
   </Grid>
 

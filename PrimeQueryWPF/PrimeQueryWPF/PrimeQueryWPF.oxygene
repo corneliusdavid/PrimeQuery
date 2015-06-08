@@ -86,7 +86,6 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrimeListPage.xaml.pas">
-      <SubType>Code</SubType>
       <DependentUpon>PrimeListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.pas" />
